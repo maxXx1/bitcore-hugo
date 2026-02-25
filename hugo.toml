@@ -3,7 +3,7 @@ languageCode = "cz-cs"
 theme = "glim-midnight"
 
 [params]
-    title = "Glim Midnight"
+    title = "Bitcore server"
     phrases = ["I`m a server", "Even if my screen is off,", "I`m still on.", "DON`T UNPLUG ME!"]
     links = [
     {name = "TeamSpeak servers", url = "https://ts.bitcore.cz/"},    
