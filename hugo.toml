@@ -1,0 +1,15 @@
+baseURL = "http://bitcore.cz"
+languageCode = "cz-cs"
+theme = "glim-midnight"
+
+[params]
+    title = "Glim Midnight"
+    phrases = ["I`m a server", "Even if my screen is off,", "I`m still on.", "DON`T UNPLUG ME!"]
+    links = [
+    {name = "TeamSpeak servers", url = "https://ts.bitcore.cz/"},    
+    {name = "Game servers", url = "https://gg.bitcore.cz/"},
+    {name = "Lineage II server", url = "https://l2.bitcore.cz/", newTab = true},    
+    {name = "Admin", url = "https://pokorak.cz/", newTab = true},    
+    ] 
+    backgroundVideo = "bg.mp4"
+    footer = "<a href='https://pokorak.cz/' target='_blank'>Aleš</a>@Bitcore.cz:~$ sudo install-bitcore-server --enable-services <strike>--fast</strike> --soon™"
