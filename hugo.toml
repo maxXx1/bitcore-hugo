@@ -2,12 +2,17 @@ baseURL = "http://bitcore.cz"
 languageCode = "cz-cs"
 theme = "glim-midnight"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
     title = "Bitcore server"
     phrases = ["I`m a server", "Even if my screen is off,", "I`m still on.", "DON`T UNPLUG ME!"]
     links = [
     {name = "TeamSpeak servers", url = "https://ts.bitcore.cz/"},    
-    {name = "Game servers", url = "/gameservers/"},
+    {name = "Game servers", url = "/game-servers/"},
     {name = "Lineage II server", url = "https://l2.bitcore.cz/", newTab = true},    
     {name = "Admin", url = "https://pokorak.cz/", newTab = true},    
     ] 
