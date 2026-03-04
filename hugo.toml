@@ -18,3 +18,4 @@ theme = "glim-midnight"
     ] 
     backgroundVideo = "bg.mp4"
     footer = "<a href='https://pokorak.cz/' target='_blank'>Aleš</a>@Bitcore.cz:~$ sudo install-bitcore-server --enable-services <strike>--fast</strike> --soon™"
+    customCSS = ["css/custom.css"]
