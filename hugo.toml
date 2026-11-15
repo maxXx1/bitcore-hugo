@@ -26,7 +26,7 @@ theme = "glim-midnight"
 
     [params.ts3]
         name = "TeamSpeak 3"
-        badge = "verze 3.6.2"
+        badge = "server v3.13.9"
         address = "ts3.bitcore.cz"
         connectUrl = "ts3server://ts3.bitcore.cz"
         connectLabel = "Připojit"
@@ -87,6 +87,15 @@ theme = "glim-midnight"
             releasesUrl = "https://github.com/OldUnreal/FullGameInstallers/releases"
             releasesLabel = "Instalace pro Linux & macOS"
 
+        [params.gameServers.patch]
+            title = "OldUnreal Patch v469e"
+            badge = "DOPORUČENO"
+            description = "Komunitní patch pro plynulý chod hry na moderních systémech."
+            rendererNote = "Správné nastavení renderu pro klienty je"
+            renderer = "D3D11Drv"
+            url = "https://github.com/OldUnreal/UnrealTournamentPatches/releases#release-v469e"
+            urlLabel = "Stáhnout komunitní patch v469e"
+
     [[params.gameServers]]
         id = "utAssaultOffcanvas"
         name = "UTAssault"
@@ -103,6 +112,15 @@ theme = "glim-midnight"
             windowsLabel = "Stáhnout UT_GOTY.exe"
             releasesUrl = "https://github.com/OldUnreal/FullGameInstallers/releases"
             releasesLabel = "Instalace pro Linux & macOS"
+
+        [params.gameServers.patch]
+            title = "OldUnreal Patch v469e"
+            badge = "DOPORUČENO"
+            description = "Komunitní patch pro plynulý chod hry na moderních systémech."
+            rendererNote = "Správné nastavení renderu pro klienty je"
+            renderer = "D3D11Drv"
+            url = "https://github.com/OldUnreal/UnrealTournamentPatches/releases#release-v469e"
+            urlLabel = "Stáhnout komunitní patch v469e"
 
     [[params.gameServers]]
         id = "ut2004Offcanvas"
