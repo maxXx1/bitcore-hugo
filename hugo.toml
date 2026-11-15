@@ -98,8 +98,8 @@ theme = "glim-midnight"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7777/"
 
         [params.gameServers.download]
-            title = "Unreal Tournament: Game of the Year Edition (GOTY)"
-            badge = "ZDARMA"
+            title = "Unreal Tournament: Game of the Year Edition"
+            badge = "GOTY"
             description = "Kompletní edice hry zdarma ke stažení přes komunitní instalátor OldUnreal."
             windowsUrl = "https://github.com/OldUnreal/FullGameInstallers/releases/download/windows-game-installers/UT_GOTY.exe"
             windowsLabel = "Stáhnout UT_GOTY.exe"
@@ -124,8 +124,8 @@ theme = "glim-midnight"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7140/"
 
         [params.gameServers.download]
-            title = "Unreal Tournament: Game of the Year Edition (GOTY)"
-            badge = "ZDARMA"
+            title = "Unreal Tournament: Game of the Year Edition"
+            badge = "GOTY"
             description = "Kompletní edice hry zdarma ke stažení přes komunitní instalátor OldUnreal."
             windowsUrl = "https://github.com/OldUnreal/FullGameInstallers/releases/download/windows-game-installers/UT_GOTY.exe"
             windowsLabel = "Stáhnout UT_GOTY.exe"
@@ -150,8 +150,8 @@ theme = "glim-midnight"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:8888/"
 
         [params.gameServers.download]
-            title = "Unreal Tournament 2004: Editor's Choice Edition (ECE)"
-            badge = "ZDARMA"
+            title = "Unreal Tournament 2004: Editor's Choice Edition"
+            badge = "ECE"
             description = "Kompletní edice hry zdarma ke stažení přes komunitní instalátor OldUnreal."
             windowsUrl = "https://github.com/OldUnreal/FullGameInstallers/releases/download/windows-game-installers/UT2004.exe"
             windowsLabel = "Stáhnout UT2004.exe"
