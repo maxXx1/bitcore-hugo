@@ -24,7 +24,7 @@
                     </div>
 
                     {{ with .connectUrl }}
-                        <a href="{{ . }}" class="btn btn-sm btn-outline-light ts-connect-btn ts-connect-btn-primary">
+                        <a href="{{ . | safeURL }}" class="btn btn-sm btn-outline-light ts-connect-btn ts-connect-btn-primary">
                             <i class="fas fa-sign-in-alt"></i>
                             <span>{{ $.Site.Params.ts3.connectLabel | default "Connect" }}</span>
                         </a>
@@ -71,7 +71,7 @@
                                 </div>
 
                                 {{ with $item.connectUrl }}
-                                    <a href="{{ . }}" class="btn btn-sm btn-outline-light ts-connect-btn" {{ if $item.newTab }}target="_blank" rel="noopener noreferrer"{{ end }}>
+                                    <a href="{{ . | safeURL }}" class="btn btn-sm btn-outline-light ts-connect-btn" {{ if $item.newTab }}target="_blank" rel="noopener noreferrer"{{ end }}>
                                         <span>{{ $item.connectLabel | default "Connect" }}</span>
                                         <i class="{{ if $item.newTab }}fas fa-external-link-alt{{ else }}fas fa-sign-in-alt{{ end }}"></i>
                                     </a>

@@ -25,8 +25,8 @@ theme = "glim-midnight"
     [params.ts3]
         name = "TeamSpeak 3"
         badge = "Primary"
-        address = "ts.maxxx.cz"
-        connectUrl = "ts3server://ts.maxxx.cz"
+        address = "ts3.bitcore.cz"
+        connectUrl = "ts3server://ts3.bitcore.cz"
         connectLabel = "Connect"
 
     [[params.voiceLinks]]
