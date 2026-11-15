@@ -12,10 +12,30 @@ theme = "glim-midnight"
     phrases = ["I`m a server", "Even if my screen is off,", "I`m still on.", "DON`T UNPLUG ME!"]
     links = [
     {name = "TeamSpeak servers", url = "https://ts.bitcore.cz/"},    
-    {name = "Game servers", url = "/game-servers/"},
+    {name = "Game servers", offcanvas = "gameServersOffcanvas"},
     {name = "Lineage II server", url = "https://l2.bitcore.cz/", newTab = true},    
     {name = "Admin", url = "https://pokorak.cz/", newTab = true},    
     ] 
     backgroundVideo = "bg.mp4"
     footer = "<a href='https://pokorak.cz/' target='_blank'>Aleš</a>@Bitcore.cz:~$ sudo install-bitcore-server --enable-services <strike>--fast</strike> --soon™"
-    customCSS = ["css/custom.css"]
+
+    gameServersTitle = "Game servers"
+    gameServersSubtitle = "Základní přehled herních serverů běžících na Bitcore."
+
+    [[params.gameServers]]
+        name = "Call of Duty 2"
+        status = "Online"
+        description = "Klasický CoD2 server"
+        address = "188.244.57.150:28960"
+        banner = "https://cache.gametracker.com/server_info/188.244.57.150:28960/b_560_95_1.png"
+        url = "https://www.gametracker.com/server_info/188.244.57.150:28960/"
+        urlLabel = "GameTracker"
+
+    # Další servery přidáš jednoduše zkopírováním bloku [[params.gameServers]]:
+    # [[params.gameServers]]
+    #     name = "Minecraft"
+    #     status = "Online"
+    #     description = "Survival 1.21 • Whitelist"
+    #     address = "mc.bitcore.cz:25565"
+    #     url = "https://bitcore.cz/"
+    #     urlLabel = "Info"

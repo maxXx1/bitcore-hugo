@@ -1,0 +1,84 @@
+<div class="offcanvas offcanvas-end gs-offcanvas" tabindex="-1" id="gameServersOffcanvas" aria-labelledby="gameServersOffcanvasLabel">
+    <div class="offcanvas-header gs-offcanvas-header">
+        <h5 class="offcanvas-title" id="gameServersOffcanvasLabel">
+            <i class="fas fa-gamepad me-2"></i>{{ .Site.Params.gameServersTitle | default "Game servers" }}
+        </h5>
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Zavřít"></button>
+    </div>
+
+    <div class="offcanvas-body gs-offcanvas-body">
+        {{ with .Site.Params.gameServersSubtitle }}
+            <p class="gs-subtitle">{{ . }}</p>
+        {{ end }}
+
+        {{ with .Site.Params.gameServers }}
+            <div class="gs-list">
+                {{ range $server := . }}
+                    <div class="gs-card">
+                        <div class="gs-card-header">
+                            <span class="gs-server-name">
+                                <i class="fas fa-server me-2"></i>{{ $server.name }}
+                            </span>
+                            {{ with $server.status }}
+                                <span class="badge gs-badge">{{ . }}</span>
+                            {{ end }}
+                        </div>
+
+                        {{ with $server.description }}
+                            <p class="gs-server-desc">{{ . }}</p>
+                        {{ end }}
+
+                        {{ with $server.address }}
+                            <div class="gs-address-row">
+                                <code class="gs-address">{{ . }}</code>
+                                <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" data-copy-address="{{ . }}" title="Kopírovat adresu">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        {{ end }}
+
+                        {{ with $server.banner }}
+                            <div class="gs-banner-wrap">
+                                {{ if $server.url }}
+                                    <a href="{{ $server.url }}" target="_blank" rel="noopener noreferrer">
+                                        <img src="{{ . }}" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
+                                    </a>
+                                {{ else }}
+                                    <img src="{{ . }}" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
+                                {{ end }}
+                            </div>
+                        {{ end }}
+
+                        {{ if $server.url }}
+                            <div class="gs-card-actions">
+                                <a href="{{ $server.url }}" class="btn btn-sm btn-outline-light" target="_blank" rel="noopener noreferrer">
+                                    {{ $server.urlLabel | default "Detail" }} <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                            </div>
+                        {{ end }}
+                    </div>
+                {{ end }}
+            </div>
+        {{ else }}
+            <p class="gs-empty">Zatím zde nejsou žádné přidané servery.</p>
+        {{ end }}
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.gs-copy-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const addr = btn.getAttribute('data-copy-address');
+            if (!addr || !navigator.clipboard) return;
+            navigator.clipboard.writeText(addr).then(function () {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-check';
+                    setTimeout(function () {
+                        icon.className = 'fas fa-copy';
+                    }, 1500);
+                }
+            });
+        });
+    });
+</script>

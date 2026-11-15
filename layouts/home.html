@@ -20,19 +20,25 @@
                     <div class='contenttypewritter animatedText'></div>
                     <div class='contentbtn'>
                         {{ range .Site.Params.links }}
-                            <a href="{{ .url }}" class='btn btn-outline-light' role='button' 
-                                {{ if or (.newTab | default false) }}
-                                    target="_blank"
-                                {{ else }}
-                                    target="_self"
-                                {{ end }}
-                            >{{ .name }}</a>
+                            {{ if .offcanvas }}
+                                <button type="button" class='btn btn-outline-light' data-bs-toggle="offcanvas" data-bs-target="#{{ .offcanvas }}" aria-controls="{{ .offcanvas }}">{{ .name }}</button>
+                            {{ else }}
+                                <a href="{{ .url }}" class='btn btn-outline-light' role='button' 
+                                    {{ if or (.newTab | default false) }}
+                                        target="_blank"
+                                    {{ else }}
+                                        target="_self"
+                                    {{ end }}
+                                >{{ .name }}</a>
+                            {{ end }}
                         {{ end }}
                       </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {{ partial "game-servers-offcanvas.html" . }}
 
     <!-- JS for typewritter -->
     <script>
