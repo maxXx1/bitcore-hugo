@@ -1,73 +1,67 @@
-<div class="offcanvas offcanvas-end bitcore-offcanvas" tabindex="-1" id="gameServersOffcanvas" aria-labelledby="gameServersOffcanvasLabel">
+{{ range $server := .Site.Params.gameServers }}
+<div class="offcanvas offcanvas-end bitcore-offcanvas" tabindex="-1" id="{{ $server.id }}" aria-labelledby="{{ $server.id }}Label">
     <div class="offcanvas-header gs-offcanvas-header">
-        <h5 class="offcanvas-title" id="gameServersOffcanvasLabel">
-            <i class="fas fa-gamepad me-2"></i>{{ .Site.Params.gameServersTitle | default "Game servers" }}
+        <h5 class="offcanvas-title" id="{{ $server.id }}Label">
+            <i class="fas fa-gamepad me-2"></i>{{ $server.name }}
         </h5>
-        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Zavřít"></button>
     </div>
 
     <div class="offcanvas-body gs-offcanvas-body">
-        {{ with .Site.Params.gameServersSubtitle }}
+        {{ with $.Site.Params.gameServersSubtitle }}
             <p class="gs-subtitle">{{ . }}</p>
         {{ end }}
 
-        {{ with .Site.Params.gameServers }}
-            <div class="gs-list">
-                {{ range $server := . }}
-                    <div class="gs-card">
-                        <div class="gs-card-header">
-                            <span class="gs-server-name">
-                                <i class="fas fa-server me-2"></i>{{ $server.name }}
-                            </span>
-                            {{ with $server.status }}
-                                <span class="badge gs-badge">{{ . }}</span>
-                            {{ end }}
-                        </div>
-
-                        {{ with $server.description }}
-                            <p class="gs-server-desc">{{ . }}</p>
-                        {{ end }}
-
-                        {{ with $server.address }}
-                            {{ $cmd := $server.address }}
-                            {{ with $server.commandPrefix }}
-                                {{ $cmd = printf "%s %s" . $server.address }}
-                            {{ end }}
-                            <div class="gs-connect-row" data-copy-text="{{ $cmd }}">
-                                <div class="gs-code-frame" role="button" tabindex="0" title="Click to copy console command">
-                                    <code class="gs-code-text">{{ $cmd }}</code>
-                                </div>
-                                <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Copy command">
-                                    <i class="fas fa-copy"></i>
-                                    <span class="gs-copy-label">Copy</span>
-                                </button>
-                            </div>
-                        {{ end }}
-
-                        {{ with $server.banner }}
-                            <div class="gs-banner-wrap">
-                                {{ if $server.url }}
-                                    <a href="{{ $server.url }}" target="_blank" rel="noopener noreferrer">
-                                        <img src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
-                                    </a>
-                                {{ else }}
-                                    <img src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
-                                {{ end }}
-                            </div>
-                        {{ end }}
-
-                        {{ if and $server.url (or (not $server.banner) $server.urlLabel) }}
-                            <div class="gs-card-actions">
-                                <a href="{{ $server.url }}" class="btn btn-sm btn-outline-light" target="_blank" rel="noopener noreferrer">
-                                    {{ $server.urlLabel | default "Details" }} <i class="fas fa-external-link-alt ms-1"></i>
-                                </a>
-                            </div>
-                        {{ end }}
-                    </div>
+        <div class="gs-card">
+            <div class="gs-card-header">
+                <span class="gs-server-name">
+                    <i class="fas fa-server me-2"></i>{{ $server.name }}
+                </span>
+                {{ with $server.status }}
+                    <span class="badge gs-badge">{{ . }}</span>
                 {{ end }}
             </div>
-        {{ else }}
-            <p class="gs-empty">No game servers configured yet.</p>
-        {{ end }}
+
+            {{ with $server.description }}
+                <p class="gs-server-desc">{{ . }}</p>
+            {{ end }}
+
+            {{ with $server.address }}
+                {{ $cmd := $server.address }}
+                {{ with $server.commandPrefix }}
+                    {{ $cmd = printf "%s %s" . $server.address }}
+                {{ end }}
+                <div class="gs-connect-row" data-copy-text="{{ $cmd }}">
+                    <div class="gs-code-frame" role="button" tabindex="0" title="Kliknutím zkopíruješ příkaz do konzole">
+                        <code class="gs-code-text">{{ $cmd }}</code>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Kopírovat příkaz">
+                        <i class="fas fa-copy"></i>
+                        <span class="gs-copy-label">Kopírovat</span>
+                    </button>
+                </div>
+            {{ end }}
+
+            {{ with $server.banner }}
+                <div class="gs-banner-wrap">
+                    {{ if $server.url }}
+                        <a href="{{ $server.url }}" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
+                        </a>
+                    {{ else }}
+                        <img src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
+                    {{ end }}
+                </div>
+            {{ end }}
+
+            {{ if and $server.url (or (not $server.banner) $server.urlLabel) }}
+                <div class="gs-card-actions">
+                    <a href="{{ $server.url }}" class="btn btn-sm btn-outline-light" target="_blank" rel="noopener noreferrer">
+                        {{ $server.urlLabel | default "Detail" }} <i class="fas fa-external-link-alt ms-1"></i>
+                    </a>
+                </div>
+            {{ end }}
+        </div>
     </div>
 </div>
+{{ end }}

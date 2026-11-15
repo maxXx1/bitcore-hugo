@@ -1,4 +1,20 @@
 <style>
+    .contentbtn a.btn-muted,
+    .contentbtn button.btn-muted {
+        border-color: rgba(255, 255, 255, 0.35);
+        color: rgba(255, 255, 255, 0.72);
+        opacity: 0.48;
+        text-shadow: none;
+    }
+
+    .contentbtn a.btn-muted:hover,
+    .contentbtn button.btn-muted:hover {
+        background-color: rgba(255, 255, 255, 0.16);
+        border-color: rgba(255, 255, 255, 0.72);
+        color: #ffffff;
+        opacity: 0.88;
+    }
+
     .bitcore-offcanvas.offcanvas-end {
         background-color: rgba(10, 12, 16, 0.94) !important;
         backdrop-filter: blur(12px);
@@ -352,13 +368,13 @@
                     const label = copyBtn ? copyBtn.querySelector('.gs-copy-label') : null;
                     row.classList.add('is-copied');
                     if (icon) icon.className = 'fas fa-check';
-                    if (label) label.textContent = 'Copied!';
+                    if (label) label.textContent = 'Zkopírováno!';
 
                     if (resetTimer) clearTimeout(resetTimer);
                     resetTimer = setTimeout(function () {
                         row.classList.remove('is-copied');
                         if (icon) icon.className = 'fas fa-copy';
-                        if (label) label.textContent = 'Copy';
+                        if (label) label.textContent = 'Kopírovat';
                     }, 1500);
                 });
             }

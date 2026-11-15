@@ -11,39 +11,41 @@ theme = "glim-midnight"
     title = "Bitcore server"
     phrases = ["I`m a server", "Even if my screen is off,", "I`m still on.", "DON`T UNPLUG ME!"]
     links = [
-    {name = "TeamSpeak servers", offcanvas = "teamSpeakOffcanvas"},    
-    {name = "Game servers", offcanvas = "gameServersOffcanvas"},
-    {name = "Lineage II server", url = "https://l2.bitcore.cz/", newTab = true},    
-    {name = "Admin", url = "https://pokorak.cz/", newTab = true},    
+    {name = "TeamSpeak servers", offcanvas = "teamSpeakOffcanvas"},
+    {name = "Call of Duty 2", offcanvas = "cod2Offcanvas"},
+    {name = "Unreal Tournament", offcanvas = "ut99Offcanvas"},
+    {name = "UTAssault", offcanvas = "utAssaultOffcanvas"},
+    {name = "Unreal Tournament 2004", offcanvas = "ut2004Offcanvas"},
+    {name = "Lineage II server", url = "https://l2.bitcore.cz/", newTab = true, muted = true},
     ] 
     backgroundVideo = "bg.mp4"
     footer = "<a href='https://pokorak.cz/' target='_blank'>Aleš</a>@Bitcore.cz:~$ sudo install-bitcore-server --enable-services <strike>--fast</strike> --soon™"
 
-    voiceServersTitle = "TeamSpeak servers"
-    voiceServersSubtitle = "Primary TeamSpeak 3 voice server, plus test TS6 and Discord."
+    voiceServersTitle = "TeamSpeak servery"
+    voiceServersSubtitle = "Hlavní TeamSpeak 3 hlasový server, testovací TS6 a Discord."
 
     [params.ts3]
         name = "TeamSpeak 3"
-        badge = "Primary"
+        badge = "Hlavní"
         address = "ts3.bitcore.cz"
         connectUrl = "ts3server://ts3.bitcore.cz"
-        connectLabel = "Connect"
+        connectLabel = "Připojit"
 
     [[params.voiceLinks]]
         name = "TeamSpeak 6 Beta"
-        badge = "Test server"
+        badge = "Testovací server"
         icon = "fab fa-teamspeak"
         address = "ts6.bitcore.cz:9988"
         connectUrl = "teamspeak://ts6.bitcore.cz?port=9988"
-        connectLabel = "Connect"
+        connectLabel = "Připojit"
 
     [[params.voiceLinks]]
         name = "Discord"
-        badge = "Community"
+        badge = "Komunita"
         icon = "fab fa-discord"
         address = "https://discord.gg/vkQXVPZ"
         connectUrl = "https://discord.gg/vkQXVPZ"
-        connectLabel = "Join"
+        connectLabel = "Připojit"
         newTab = true
 
     [[params.voiceLinks]]
@@ -54,14 +56,14 @@ theme = "glim-midnight"
 
     [[params.voiceLinks]]
         name = "Ventrilo"
-        icon = "fas fa-headset"
+        icon = "fas fa-microphone-alt"
         address = "ventrilo.bitcore.cz:3784"
         offline = true
 
-    gameServersTitle = "Game servers"
-    gameServersSubtitle = "Overview of game servers running on Bitcore."
+    gameServersSubtitle = "Připojení do hry a živé statistiky serveru na Bitcore."
 
     [[params.gameServers]]
+        id = "cod2Offcanvas"
         name = "Call of Duty 2"
         address = "gg.bitcore.cz:28960"
         commandPrefix = "/connect"
@@ -69,6 +71,7 @@ theme = "glim-midnight"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:28960/"
 
     [[params.gameServers]]
+        id = "ut99Offcanvas"
         name = "Unreal Tournament"
         address = "gg.bitcore.cz:7777"
         commandPrefix = "/open"
@@ -76,6 +79,7 @@ theme = "glim-midnight"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7777/"
 
     [[params.gameServers]]
+        id = "utAssaultOffcanvas"
         name = "UTAssault"
         address = "gg.bitcore.cz:7140"
         commandPrefix = "/open"
@@ -83,6 +87,7 @@ theme = "glim-midnight"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7140/"
 
     [[params.gameServers]]
+        id = "ut2004Offcanvas"
         name = "Unreal Tournament 2004"
         address = "gg.bitcore.cz:8888"
         commandPrefix = "/open"

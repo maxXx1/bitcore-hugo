@@ -1,9 +1,9 @@
 <div class="offcanvas offcanvas-end bitcore-offcanvas" tabindex="-1" id="teamSpeakOffcanvas" aria-labelledby="teamSpeakOffcanvasLabel">
     <div class="offcanvas-header gs-offcanvas-header">
         <h5 class="offcanvas-title" id="teamSpeakOffcanvasLabel">
-            <i class="fas fa-headset me-2"></i>{{ .Site.Params.voiceServersTitle | default "TeamSpeak servers" }}
+            <i class="fas fa-headset me-2"></i>{{ .Site.Params.voiceServersTitle | default "TeamSpeak servery" }}
         </h5>
-        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Zavřít"></button>
     </div>
 
     <div class="offcanvas-body gs-offcanvas-body">
@@ -26,7 +26,7 @@
                     {{ with .connectUrl }}
                         <a href="{{ . | safeURL }}" class="btn btn-sm btn-outline-light ts-connect-btn ts-connect-btn-primary">
                             <i class="fas fa-sign-in-alt"></i>
-                            <span>{{ $.Site.Params.ts3.connectLabel | default "Connect" }}</span>
+                            <span>{{ $.Site.Params.ts3.connectLabel | default "Připojit" }}</span>
                         </a>
                     {{ end }}
                 </div>
@@ -37,17 +37,17 @@
 
                 {{ with .address }}
                     <div class="gs-connect-row" data-copy-text="{{ . }}">
-                        <div class="gs-code-frame" role="button" tabindex="0" title="Click to copy server address">
+                        <div class="gs-code-frame" role="button" tabindex="0" title="Kliknutím zkopíruješ adresu serveru">
                             <code class="gs-code-text">{{ . }}</code>
                         </div>
-                        <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Copy address">
+                        <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Kopírovat adresu">
                             <i class="fas fa-copy"></i>
-                            <span class="gs-copy-label">Copy</span>
+                            <span class="gs-copy-label">Kopírovat</span>
                         </button>
                     </div>
                 {{ end }}
 
-                <div class="ts-viewer-label">Live channels</div>
+                <div class="ts-viewer-label">Aktivní kanály</div>
                 <div class="ts-viewer-box">
                     <div id="ts3viewer_1131466" style=""></div>
                 </div>
@@ -56,7 +56,7 @@
 
         {{ with .Site.Params.voiceLinks }}
             <div class="ts-secondary-section">
-                <div class="ts-secondary-heading">Other voice options</div>
+                <div class="ts-secondary-heading">Další hlasové servery</div>
                 <div class="ts-secondary-grid">
                     {{ range $item := . }}
                         <div class="ts-secondary-card{{ if $item.offline }} ts-secondary-card-offline{{ end }}">
@@ -78,7 +78,7 @@
                                 {{ else }}
                                     {{ with $item.connectUrl }}
                                         <a href="{{ . | safeURL }}" class="btn btn-sm btn-outline-light ts-connect-btn" {{ if $item.newTab }}target="_blank" rel="noopener noreferrer"{{ end }}>
-                                            <span>{{ $item.connectLabel | default "Connect" }}</span>
+                                            <span>{{ $item.connectLabel | default "Připojit" }}</span>
                                             <i class="{{ if $item.newTab }}fas fa-external-link-alt{{ else }}fas fa-sign-in-alt{{ end }}"></i>
                                         </a>
                                     {{ end }}
@@ -87,12 +87,12 @@
 
                             {{ with $item.address }}
                                 <div class="gs-connect-row" data-copy-text="{{ . }}">
-                                    <div class="gs-code-frame" role="button" tabindex="0" title="Click to copy address">
+                                    <div class="gs-code-frame" role="button" tabindex="0" title="Kliknutím zkopíruješ adresu">
                                         <code class="gs-code-text">{{ . }}</code>
                                     </div>
-                                    <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Copy address">
+                                    <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Kopírovat adresu">
                                         <i class="fas fa-copy"></i>
-                                        <span class="gs-copy-label">Copy</span>
+                                        <span class="gs-copy-label">Kopírovat</span>
                                     </button>
                                 </div>
                             {{ end }}

@@ -21,9 +21,9 @@
                     <div class='contentbtn'>
                         {{ range .Site.Params.links }}
                             {{ if .offcanvas }}
-                                <button type="button" class='btn btn-outline-light' data-bs-toggle="offcanvas" data-bs-target="#{{ .offcanvas }}" aria-controls="{{ .offcanvas }}">{{ .name }}</button>
+                                <button type="button" class='btn btn-outline-light{{ if .muted }} btn-muted{{ end }}' data-bs-toggle="offcanvas" data-bs-target="#{{ .offcanvas }}" aria-controls="{{ .offcanvas }}">{{ .name }}</button>
                             {{ else }}
-                                <a href="{{ .url }}" class='btn btn-outline-light' role='button' 
+                                <a href="{{ .url }}" class='btn btn-outline-light{{ if .muted }} btn-muted{{ end }}' role='button' 
                                     {{ if or (.newTab | default false) }}
                                         target="_blank"
                                     {{ else }}
