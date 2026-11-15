@@ -70,6 +70,25 @@ theme = "glim-midnight"
         banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:28960/b_560_95_1.png"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:28960/"
 
+        [params.gameServers.patch]
+            title = "CoD2x Patch"
+            badge = "DOPORUČENO"
+            icon = "fas fa-wrench"
+            description = "Komunitní patch pro Call of Duty 2 zajišťující opravy a kompatibilitu na moderních systémech."
+            url = "https://github.com/callofduty2x/CoD2x/releases"
+            urlLabel = "Stáhnout CoD2x"
+
+        [params.gameServers.mod]
+            title = "zPAM Mod"
+            badge = "MOD"
+            icon = "fas fa-sliders-h"
+            cardClass = "gs-mod-card"
+            badgeClass = "gs-badge-mod"
+            btnClass = "gs-mod-btn"
+            description = "Soutěžní a turnajový mód zPAM 3 pro Call of Duty 2."
+            url = "https://github.com/eyza-cod2/zpam3/releases"
+            urlLabel = "Stáhnout zPAM"
+
     [[params.gameServers]]
         id = "ut99Offcanvas"
         name = "Unreal Tournament"

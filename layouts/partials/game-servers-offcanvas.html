@@ -115,40 +115,42 @@
             </div>
         {{ end }}
 
-        {{ with $patch := $server.patch }}
-            <div class="gs-download-card gs-patch-card">
-                <div class="gs-card-header">
-                    <div class="gs-card-title-group">
-                        <span class="gs-server-name">
-                            <i class="fas fa-wrench me-2"></i>{{ $patch.title }}
-                        </span>
+        {{ range $extra := (slice $server.patch $server.mod) }}
+            {{ with $extra }}
+                <div class="gs-download-card {{ .cardClass | default "gs-patch-card" }}">
+                    <div class="gs-card-header">
+                        <div class="gs-card-title-group">
+                            <span class="gs-server-name">
+                                <i class="{{ .icon | default "fas fa-wrench" }} me-2"></i>{{ .title }}
+                            </span>
+                        </div>
+                        {{ with .badge }}
+                            <span class="badge gs-badge {{ $extra.badgeClass | default "gs-badge-patch" }}">{{ . }}</span>
+                        {{ end }}
                     </div>
-                    {{ with $patch.badge }}
-                        <span class="badge gs-badge gs-badge-patch">{{ . }}</span>
+
+                    {{ with .description }}
+                        <p class="gs-server-desc">{{ . }}</p>
+                    {{ end }}
+
+                    {{ with .renderer }}
+                        <div class="gs-tip-box">
+                            <i class="fas fa-desktop"></i>
+                            <span>{{ $extra.rendererNote | default "Správné nastavení renderu pro klienty je" }} <code class="gs-inline-code">{{ . }}</code></span>
+                        </div>
+                    {{ end }}
+
+                    {{ with .url }}
+                        <div class="gs-download-actions">
+                            <a href="{{ . }}" class="btn btn-sm {{ $extra.btnClass | default "gs-patch-btn" }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-download"></i>
+                                <span>{{ $extra.urlLabel | default "Stáhnout" }}</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     {{ end }}
                 </div>
-
-                {{ with $patch.description }}
-                    <p class="gs-server-desc">{{ . }}</p>
-                {{ end }}
-
-                {{ with $patch.renderer }}
-                    <div class="gs-tip-box">
-                        <i class="fas fa-desktop"></i>
-                        <span>{{ $patch.rendererNote | default "Správné nastavení renderu pro klienty je" }} <code class="gs-inline-code">{{ . }}</code></span>
-                    </div>
-                {{ end }}
-
-                {{ with $patch.url }}
-                    <div class="gs-download-actions">
-                        <a href="{{ . }}" class="btn btn-sm gs-patch-btn" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-download"></i>
-                            <span>{{ $patch.urlLabel | default "Stáhnout komunitní patch" }}</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                {{ end }}
-            </div>
+            {{ end }}
         {{ end }}
     </div>
 </div>
