@@ -59,7 +59,7 @@
                 <div class="ts-secondary-heading">Other voice options</div>
                 <div class="ts-secondary-grid">
                     {{ range $item := . }}
-                        <div class="ts-secondary-card">
+                        <div class="ts-secondary-card{{ if $item.offline }} ts-secondary-card-offline{{ end }}">
                             <div class="gs-card-header">
                                 <div class="gs-card-title-group">
                                     <span class="gs-server-name">
@@ -70,11 +70,18 @@
                                     {{ end }}
                                 </div>
 
-                                {{ with $item.connectUrl }}
-                                    <a href="{{ . | safeURL }}" class="btn btn-sm btn-outline-light ts-connect-btn" {{ if $item.newTab }}target="_blank" rel="noopener noreferrer"{{ end }}>
-                                        <span>{{ $item.connectLabel | default "Connect" }}</span>
-                                        <i class="{{ if $item.newTab }}fas fa-external-link-alt{{ else }}fas fa-sign-in-alt{{ end }}"></i>
-                                    </a>
+                                {{ if $item.offline }}
+                                    <span class="btn btn-sm ts-offline-badge" aria-disabled="true">
+                                        <i class="fas fa-power-off"></i>
+                                        <span>Offline</span>
+                                    </span>
+                                {{ else }}
+                                    {{ with $item.connectUrl }}
+                                        <a href="{{ . | safeURL }}" class="btn btn-sm btn-outline-light ts-connect-btn" {{ if $item.newTab }}target="_blank" rel="noopener noreferrer"{{ end }}>
+                                            <span>{{ $item.connectLabel | default "Connect" }}</span>
+                                            <i class="{{ if $item.newTab }}fas fa-external-link-alt{{ else }}fas fa-sign-in-alt{{ end }}"></i>
+                                        </a>
+                                    {{ end }}
                                 {{ end }}
                             </div>
 

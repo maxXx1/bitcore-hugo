@@ -46,6 +46,18 @@ theme = "glim-midnight"
         connectLabel = "Join"
         newTab = true
 
+    [[params.voiceLinks]]
+        name = "Mumble"
+        icon = "fas fa-microphone-alt"
+        address = "mumble.bitcore.cz:64738"
+        offline = true
+
+    [[params.voiceLinks]]
+        name = "Ventrilo"
+        icon = "fas fa-headset"
+        address = "ventrilo.bitcore.cz:3784"
+        offline = true
+
     gameServersTitle = "Game servers"
     gameServersSubtitle = "Overview of game servers running on Bitcore."
 
