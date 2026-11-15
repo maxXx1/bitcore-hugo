@@ -24,18 +24,24 @@ theme = "glim-midnight"
 
     [[params.gameServers]]
         name = "Call of Duty 2"
-        status = "Online"
-        description = "Klasický CoD2 server"
-        address = "188.244.57.150:28960"
-        banner = "https://cache.gametracker.com/server_info/188.244.57.150:28960/b_560_95_1.png"
-        url = "https://www.gametracker.com/server_info/188.244.57.150:28960/"
-        urlLabel = "GameTracker"
+        address = "gg.bitcore.cz:28960"
+        banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:28960/b_560_95_1.png"
+        url = "https://www.gametracker.com/server_info/gg.bitcore.cz:28960/"
 
-    # Další servery přidáš jednoduše zkopírováním bloku [[params.gameServers]]:
-    # [[params.gameServers]]
-    #     name = "Minecraft"
-    #     status = "Online"
-    #     description = "Survival 1.21 • Whitelist"
-    #     address = "mc.bitcore.cz:25565"
-    #     url = "https://bitcore.cz/"
-    #     urlLabel = "Info"
+    [[params.gameServers]]
+        name = "Game server :7777"
+        address = "gg.bitcore.cz:7777"
+        banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:7777/b_560_95_1.png"
+        url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7777/"
+
+    [[params.gameServers]]
+        name = "Game server :7140"
+        address = "gg.bitcore.cz:7140"
+        banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:7140/b_560_95_1.png"
+        url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7140/"
+
+    [[params.gameServers]]
+        name = "Game server :8888"
+        address = "gg.bitcore.cz:8888"
+        banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:8888/b_560_95_1.png"
+        url = "https://www.gametracker.com/server_info/gg.bitcore.cz:8888/"

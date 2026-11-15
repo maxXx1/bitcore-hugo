@@ -41,15 +41,15 @@
                             <div class="gs-banner-wrap">
                                 {{ if $server.url }}
                                     <a href="{{ $server.url }}" target="_blank" rel="noopener noreferrer">
-                                        <img src="{{ . }}" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
+                                        <img src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
                                     </a>
                                 {{ else }}
-                                    <img src="{{ . }}" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
+                                    <img src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
                                 {{ end }}
                             </div>
                         {{ end }}
 
-                        {{ if $server.url }}
+                        {{ if and $server.url (or (not $server.banner) $server.urlLabel) }}
                             <div class="gs-card-actions">
                                 <a href="{{ $server.url }}" class="btn btn-sm btn-outline-light" target="_blank" rel="noopener noreferrer">
                                     {{ $server.urlLabel | default "Detail" }} <i class="fas fa-external-link-alt ms-1"></i>
