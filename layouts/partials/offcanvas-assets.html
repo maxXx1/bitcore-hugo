@@ -191,6 +191,20 @@
         justify-content: flex-end;
     }
 
+    .bitcore-offcanvas .gs-refresh-btn {
+        align-items: center;
+        border-color: rgba(255, 255, 255, 0.22);
+        border-radius: 5px;
+        color: rgba(255, 255, 255, 0.72);
+        display: inline-flex;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.45rem;
+    }
+
+    .bitcore-offcanvas .gs-refresh-btn:hover {
+        color: #0b0c10;
+    }
+
     /* Game download showcase card */
     .bitcore-offcanvas .gs-download-card {
         background: linear-gradient(145deg, rgba(102, 252, 241, 0.06), rgba(25, 135, 84, 0.06));
@@ -581,6 +595,47 @@
                         e.preventDefault();
                         handleCopy();
                     }
+                });
+            }
+        });
+
+        function refreshBanners(container) {
+            const btnIcon = container.querySelector('.gs-refresh-btn i');
+            const banners = container.querySelectorAll('.gs-banner[data-banner-src]');
+            if (!banners.length) return;
+
+            if (btnIcon) btnIcon.classList.add('fa-spin');
+            let pending = banners.length;
+
+            banners.forEach(function (img) {
+                const baseSrc = img.getAttribute('data-banner-src');
+                if (!baseSrc) {
+                    if (--pending === 0 && btnIcon) btnIcon.classList.remove('fa-spin');
+                    return;
+                }
+                const sep = baseSrc.indexOf('?') === -1 ? '?' : '&';
+                const freshUrl = baseSrc + sep + '_t=' + Date.now();
+                const probe = new Image();
+                probe.onload = function () {
+                    img.src = freshUrl;
+                    if (--pending === 0 && btnIcon) btnIcon.classList.remove('fa-spin');
+                };
+                probe.onerror = function () {
+                    if (--pending === 0 && btnIcon) btnIcon.classList.remove('fa-spin');
+                };
+                probe.src = freshUrl;
+            });
+        }
+
+        document.querySelectorAll('.bitcore-offcanvas').forEach(function (offcanvasEl) {
+            offcanvasEl.addEventListener('show.bs.offcanvas', function () {
+                refreshBanners(offcanvasEl);
+            });
+
+            const refreshBtn = offcanvasEl.querySelector('.gs-refresh-btn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', function () {
+                    refreshBanners(offcanvasEl);
                 });
             }
         });

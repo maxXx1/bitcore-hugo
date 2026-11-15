@@ -14,11 +14,18 @@
 
         <div class="gs-card">
             <div class="gs-card-header">
-                <span class="gs-server-name">
-                    <i class="fas fa-server me-2"></i>{{ $server.name }}
-                </span>
-                {{ with $server.status }}
-                    <span class="badge gs-badge">{{ . }}</span>
+                <div class="gs-card-title-group">
+                    <span class="gs-server-name">
+                        <i class="fas fa-server me-2"></i>{{ $server.name }}
+                    </span>
+                    {{ with $server.status }}
+                        <span class="badge gs-badge">{{ . }}</span>
+                    {{ end }}
+                </div>
+                {{ if $server.banner }}
+                    <button type="button" class="btn btn-sm btn-outline-light gs-refresh-btn" title="Obnovit GameTracker banner" aria-label="Obnovit GameTracker banner">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
                 {{ end }}
             </div>
 
@@ -46,10 +53,10 @@
                 <div class="gs-banner-wrap">
                     {{ if $server.url }}
                         <a href="{{ $server.url }}" target="_blank" rel="noopener noreferrer">
-                            <img src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
+                            <img src="{{ . }}" data-banner-src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner">
                         </a>
                     {{ else }}
-                        <img src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner" loading="lazy">
+                        <img src="{{ . }}" data-banner-src="{{ . }}" width="560" height="95" alt="{{ $server.name }}" class="img-fluid gs-banner">
                     {{ end }}
                 </div>
             {{ end }}
