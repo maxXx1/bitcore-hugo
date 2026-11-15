@@ -62,6 +62,58 @@
                 </div>
             {{ end }}
         </div>
+
+        {{ with $dl := $server.download }}
+            <div class="gs-download-card">
+                <div class="gs-card-header">
+                    <div class="gs-card-title-group">
+                        <span class="gs-server-name">
+                            <i class="fas fa-box-open me-2"></i>{{ $dl.title }}
+                        </span>
+                    </div>
+                    {{ with $dl.badge }}
+                        <span class="badge gs-badge gs-badge-free">{{ . }}</span>
+                    {{ end }}
+                </div>
+
+                {{ with $dl.description }}
+                    <p class="gs-server-desc">{{ . }}</p>
+                {{ end }}
+
+                <div class="gs-os-strip">
+                    <a href="{{ $dl.windowsUrl }}" class="gs-os-chip gs-os-win" target="_blank" rel="noopener noreferrer" title="Přímé stažení instalátoru pro Windows">
+                        <i class="fab fa-windows"></i>
+                        <span>Windows 7 – 11</span>
+                    </a>
+                    <a href="{{ $dl.releasesUrl }}" class="gs-os-chip gs-os-linux" target="_blank" rel="noopener noreferrer" title="Více informací k instalaci na Linux">
+                        <i class="fab fa-linux"></i>
+                        <span>Linux</span>
+                        <i class="fas fa-external-link-alt gs-os-ext"></i>
+                    </a>
+                    <a href="{{ $dl.releasesUrl }}" class="gs-os-chip gs-os-mac" target="_blank" rel="noopener noreferrer" title="Více informací k instalaci na macOS">
+                        <i class="fab fa-apple"></i>
+                        <span>macOS</span>
+                        <i class="fas fa-external-link-alt gs-os-ext"></i>
+                    </a>
+                </div>
+
+                <div class="gs-download-actions">
+                    {{ with $dl.windowsUrl }}
+                        <a href="{{ . }}" class="btn btn-sm gs-download-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-download"></i>
+                            <span>{{ $dl.windowsLabel | default "Stáhnout hru" }}</span>
+                        </a>
+                    {{ end }}
+                    {{ with $dl.releasesUrl }}
+                        <a href="{{ . }}" class="btn btn-sm btn-outline-light gs-guide-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-terminal"></i>
+                            <span>{{ $dl.releasesLabel | default "Instalace pro Linux & macOS" }}</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    {{ end }}
+                </div>
+            </div>
+        {{ end }}
     </div>
 </div>
 {{ end }}
