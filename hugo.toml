@@ -71,11 +71,11 @@ theme = "glim-midnight"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:28960/"
 
         [params.gameServers.patch]
-            title = "CoD2x Patch"
-            badge = "DOPORUČENO"
+            title = "CoD2x"
+            badge = "Verze 1.4"
             icon = "fas fa-wrench"
             description = "Komunitní patch pro Call of Duty 2 zajišťující opravy a kompatibilitu na moderních systémech."
-            url = "https://github.com/callofduty2x/CoD2x/releases"
+            url = "https://cod2x.me/"
             urlLabel = "Stáhnout CoD2x"
 
         [params.gameServers.mod]
@@ -85,7 +85,7 @@ theme = "glim-midnight"
             cardClass = "gs-mod-card"
             badgeClass = "gs-badge-mod"
             btnClass = "gs-mod-btn"
-            description = "Soutěžní a turnajový mód zPAM 3 pro Call of Duty 2."
+            description = "Cempetetivní a turnajový mód který poskytuje opravené verze map."
             url = "https://github.com/eyza-cod2/zpam3/releases"
             urlLabel = "Stáhnout zPAM"
 
@@ -107,8 +107,8 @@ theme = "glim-midnight"
             releasesLabel = "Instalace pro Linux & macOS"
 
         [params.gameServers.patch]
-            title = "OldUnreal Patch v469e"
-            badge = "DOPORUČENO"
+            title = "OldUnreal Patch"
+            badge = "v469e"
             description = "Komunitní patch pro plynulý chod hry na moderních systémech."
             rendererNote = "Správné nastavení renderu pro klienty je"
             renderer = "D3D11Drv"
@@ -133,8 +133,8 @@ theme = "glim-midnight"
             releasesLabel = "Instalace pro Linux & macOS"
 
         [params.gameServers.patch]
-            title = "OldUnreal Patch v469e"
-            badge = "DOPORUČENO"
+            title = "OldUnreal Patch"
+            badge = "v469e"
             description = "Komunitní patch pro plynulý chod hry na moderních systémech."
             rendererNote = "Správné nastavení renderu pro klienty je"
             renderer = "D3D11Drv"
