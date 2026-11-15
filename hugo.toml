@@ -11,13 +11,40 @@ theme = "glim-midnight"
     title = "Bitcore server"
     phrases = ["I`m a server", "Even if my screen is off,", "I`m still on.", "DON`T UNPLUG ME!"]
     links = [
-    {name = "TeamSpeak servers", url = "https://ts.bitcore.cz/"},    
+    {name = "TeamSpeak servers", offcanvas = "teamSpeakOffcanvas"},    
     {name = "Game servers", offcanvas = "gameServersOffcanvas"},
     {name = "Lineage II server", url = "https://l2.bitcore.cz/", newTab = true},    
     {name = "Admin", url = "https://pokorak.cz/", newTab = true},    
     ] 
     backgroundVideo = "bg.mp4"
     footer = "<a href='https://pokorak.cz/' target='_blank'>Aleš</a>@Bitcore.cz:~$ sudo install-bitcore-server --enable-services <strike>--fast</strike> --soon™"
+
+    voiceServersTitle = "TeamSpeak servers"
+    voiceServersSubtitle = "Primary TeamSpeak 3 voice server, plus test TS6 and Discord."
+
+    [params.ts3]
+        name = "TeamSpeak 3"
+        badge = "Primary"
+        address = "ts.maxxx.cz"
+        connectUrl = "ts3server://ts.maxxx.cz"
+        connectLabel = "Connect"
+
+    [[params.voiceLinks]]
+        name = "TeamSpeak 6 Beta"
+        badge = "Test server"
+        icon = "fab fa-teamspeak"
+        address = "ts6.bitcore.cz:9988"
+        connectUrl = "teamspeak://ts6.bitcore.cz?port=9988"
+        connectLabel = "Connect"
+
+    [[params.voiceLinks]]
+        name = "Discord"
+        badge = "Community"
+        icon = "fab fa-discord"
+        address = "https://discord.gg/vkQXVPZ"
+        connectUrl = "https://discord.gg/vkQXVPZ"
+        connectLabel = "Join"
+        newTab = true
 
     gameServersTitle = "Game servers"
     gameServersSubtitle = "Overview of game servers running on Bitcore."

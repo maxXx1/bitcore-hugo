@@ -1,0 +1,357 @@
+<style>
+    .bitcore-offcanvas.offcanvas-end {
+        background-color: rgba(10, 12, 16, 0.94) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-left: 1px solid rgba(255, 255, 255, 0.22) !important;
+        color: #f8f9fa !important;
+        max-width: 100vw !important;
+        width: min(640px, 100vw) !important;
+    }
+
+    .bitcore-offcanvas .gs-offcanvas-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        padding: 1rem 1.25rem;
+    }
+
+    .bitcore-offcanvas .offcanvas-title {
+        color: #ffffff;
+        font-size: 1.05rem;
+        letter-spacing: .03em;
+        margin: 0;
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.45);
+    }
+
+    .bitcore-offcanvas .gs-offcanvas-body {
+        padding: 1.25rem;
+    }
+
+    .bitcore-offcanvas .gs-subtitle,
+    .bitcore-offcanvas .gs-empty {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.85rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .bitcore-offcanvas .gs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .bitcore-offcanvas .gs-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 6px;
+        padding: 1rem;
+    }
+
+    .bitcore-offcanvas .gs-card-header {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+    }
+
+    .bitcore-offcanvas .gs-card-title-group {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .bitcore-offcanvas .gs-server-name {
+        color: #ffffff;
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    .bitcore-offcanvas .gs-badge {
+        background: rgba(25, 135, 84, 0.25);
+        border: 1px solid rgba(72, 199, 142, 0.5);
+        color: #7ee2b8;
+        font-size: 0.72rem;
+        font-weight: 400;
+    }
+
+    .bitcore-offcanvas .gs-badge-info {
+        background: rgba(28, 158, 255, 0.18);
+        border-color: rgba(28, 158, 255, 0.5);
+        color: #7cc9ff;
+    }
+
+    .bitcore-offcanvas .gs-badge-muted {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .bitcore-offcanvas .gs-server-desc {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.82rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .bitcore-offcanvas .gs-connect-row {
+        align-items: stretch;
+        display: flex;
+        gap: 0.6rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .bitcore-offcanvas .gs-connect-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .bitcore-offcanvas .gs-code-frame {
+        align-items: center;
+        background: rgba(0, 0, 0, 0.68);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        padding: 0.45rem 0.75rem;
+        transition: border-color .15s ease, background-color .15s ease;
+    }
+
+    .bitcore-offcanvas .gs-code-frame:hover,
+    .bitcore-offcanvas .gs-code-frame:focus-visible {
+        background: rgba(0, 0, 0, 0.85);
+        border-color: rgba(255, 255, 255, 0.55);
+        outline: none;
+    }
+
+    .bitcore-offcanvas .gs-code-text {
+        color: #e9ecef;
+        font-size: 0.84rem;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .bitcore-offcanvas .gs-copy-btn {
+        align-items: center;
+        border-radius: 5px;
+        display: inline-flex;
+        flex-shrink: 0;
+        font-size: 0.8rem;
+        gap: 0.4rem;
+        padding: 0.45rem 0.85rem;
+        white-space: nowrap;
+    }
+
+    .bitcore-offcanvas .gs-connect-row.is-copied .gs-code-frame {
+        border-color: rgba(72, 199, 142, 0.8);
+    }
+
+    .bitcore-offcanvas .gs-connect-row.is-copied .gs-copy-btn {
+        background-color: rgba(25, 135, 84, 0.28);
+        border-color: rgba(72, 199, 142, 0.8);
+        color: #7ee2b8;
+    }
+
+    .bitcore-offcanvas .gs-banner-wrap {
+        margin-bottom: 0.6rem;
+    }
+
+    .bitcore-offcanvas .gs-banner-wrap:last-child {
+        margin-bottom: 0;
+    }
+
+    .bitcore-offcanvas .gs-banner {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 4px;
+        display: block;
+        height: auto;
+        max-width: 100%;
+        width: 560px;
+    }
+
+    .bitcore-offcanvas .gs-card-actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* TeamSpeak / Voice offcanvas */
+    .bitcore-offcanvas .ts-primary-card {
+        background: rgba(28, 158, 255, 0.06);
+        border-color: rgba(28, 158, 255, 0.45);
+    }
+
+    .bitcore-offcanvas .ts-connect-btn {
+        align-items: center;
+        border-radius: 5px;
+        display: inline-flex;
+        font-size: 0.8rem;
+        gap: 0.4rem;
+        padding: 0.35rem 0.8rem;
+        white-space: nowrap;
+    }
+
+    .bitcore-offcanvas .ts-connect-btn-primary {
+        background-color: rgba(28, 158, 255, 0.22);
+        border-color: rgba(28, 158, 255, 0.75);
+        color: #ffffff;
+    }
+
+    .bitcore-offcanvas .ts-connect-btn-primary:hover {
+        background-color: #1C9EFF;
+        border-color: #1C9EFF;
+        color: #0b0c10;
+    }
+
+    .bitcore-offcanvas .ts-viewer-label {
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.76rem;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.45rem;
+        text-transform: uppercase;
+    }
+
+    .bitcore-offcanvas .ts-viewer-box {
+        background: rgba(0, 0, 0, 0.62);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 5px;
+        max-height: 360px;
+        overflow-y: auto;
+        padding: 0.75rem 0.9rem;
+    }
+
+    #ts3viewer_1131466,
+    #ts3viewer_1131466 #ts3v_1131466,
+    #ts3viewer_1131466 #ts3v_1131466 * {
+        font-family: "Noto Sans Mono", monospace !important;
+    }
+
+    #ts3viewer_1131466 #ts3v_1131466 {
+        color: #e9ecef !important;
+        font-size: 0.82rem !important;
+        line-height: 1.45 !important;
+    }
+
+    #ts3viewer_1131466 #ts3v_1131466 a {
+        color: #f8f9fa !important;
+        text-decoration: none !important;
+    }
+
+    #ts3viewer_1131466 #ts3v_1131466 .tsv_user a,
+    #ts3viewer_1131466 #ts3v_1131466 .tsv_user .tsv_name {
+        color: #adb5bd !important;
+    }
+
+    #ts3viewer_1131466 #ts3v_1131466 .tsv_user:hover .tsv_name,
+    #ts3viewer_1131466 #ts3v_1131466 a:hover {
+        color: #7cc9ff !important;
+    }
+
+    #ts3viewer_1131466 #ts3v_1131466 .ts3v_user_tooltip {
+        background-color: rgba(12, 15, 20, 0.97) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border-radius: 5px !important;
+        color: #f8f9fa !important;
+        padding: 0.5rem 0.65rem !important;
+    }
+
+    #ts3viewer_1131466 #ts3v_1131466 .ts3v_user_tooltip a.boxedLink {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+    }
+
+    .bitcore-offcanvas .ts-secondary-section {
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+    }
+
+    .bitcore-offcanvas .ts-secondary-heading {
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.85rem;
+        text-transform: uppercase;
+    }
+
+    .bitcore-offcanvas .ts-secondary-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+    }
+
+    .bitcore-offcanvas .ts-secondary-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 6px;
+        padding: 0.85rem 1rem;
+    }
+
+    .bitcore-offcanvas .ts-secondary-card .gs-card-header {
+        margin-bottom: 0.6rem;
+    }
+</style>
+
+<script>
+    (function () {
+        function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+            return new Promise(function (resolve, reject) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    const ok = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    if (ok) resolve(); else reject();
+                } catch (err) {
+                    document.body.removeChild(textarea);
+                    reject(err);
+                }
+            });
+        }
+
+        document.querySelectorAll('.bitcore-offcanvas .gs-connect-row').forEach(function (row) {
+            let resetTimer = null;
+            const codeFrame = row.querySelector('.gs-code-frame');
+            const copyBtn = row.querySelector('.gs-copy-btn');
+
+            function handleCopy() {
+                const text = row.getAttribute('data-copy-text');
+                if (!text) return;
+
+                copyText(text).then(function () {
+                    const icon = copyBtn ? copyBtn.querySelector('i') : null;
+                    const label = copyBtn ? copyBtn.querySelector('.gs-copy-label') : null;
+                    row.classList.add('is-copied');
+                    if (icon) icon.className = 'fas fa-check';
+                    if (label) label.textContent = 'Copied!';
+
+                    if (resetTimer) clearTimeout(resetTimer);
+                    resetTimer = setTimeout(function () {
+                        row.classList.remove('is-copied');
+                        if (icon) icon.className = 'fas fa-copy';
+                        if (label) label.textContent = 'Copy';
+                    }, 1500);
+                });
+            }
+
+            if (copyBtn) copyBtn.addEventListener('click', handleCopy);
+            if (codeFrame) {
+                codeFrame.addEventListener('click', handleCopy);
+                codeFrame.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleCopy();
+                    }
+                });
+            }
+        });
+    })();
+</script>
