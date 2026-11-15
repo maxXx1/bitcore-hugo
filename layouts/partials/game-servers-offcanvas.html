@@ -1,9 +1,164 @@
+<style>
+    #gameServersOffcanvas.offcanvas-end {
+        background-color: rgba(10, 12, 16, 0.94) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-left: 1px solid rgba(255, 255, 255, 0.22) !important;
+        color: #f8f9fa !important;
+        max-width: 100vw !important;
+        width: min(640px, 100vw) !important;
+    }
+
+    #gameServersOffcanvas .gs-offcanvas-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        padding: 1rem 1.25rem;
+    }
+
+    #gameServersOffcanvas .offcanvas-title {
+        color: #ffffff;
+        font-size: 1.05rem;
+        letter-spacing: .03em;
+        margin: 0;
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.45);
+    }
+
+    #gameServersOffcanvas .gs-offcanvas-body {
+        padding: 1.25rem;
+    }
+
+    #gameServersOffcanvas .gs-subtitle,
+    #gameServersOffcanvas .gs-empty {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.85rem;
+        margin-bottom: 1.25rem;
+    }
+
+    #gameServersOffcanvas .gs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    #gameServersOffcanvas .gs-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 6px;
+        padding: 1rem;
+    }
+
+    #gameServersOffcanvas .gs-card-header {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+    }
+
+    #gameServersOffcanvas .gs-server-name {
+        color: #ffffff;
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    #gameServersOffcanvas .gs-badge {
+        background: rgba(25, 135, 84, 0.25);
+        border: 1px solid rgba(72, 199, 142, 0.5);
+        color: #7ee2b8;
+        font-size: 0.72rem;
+        font-weight: 400;
+    }
+
+    #gameServersOffcanvas .gs-server-desc {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.82rem;
+        margin-bottom: 0.75rem;
+    }
+
+    #gameServersOffcanvas .gs-connect-row {
+        align-items: stretch;
+        display: flex;
+        gap: 0.6rem;
+        margin-bottom: 0.85rem;
+    }
+
+    #gameServersOffcanvas .gs-code-frame {
+        align-items: center;
+        background: rgba(0, 0, 0, 0.68);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        padding: 0.45rem 0.75rem;
+        transition: border-color .15s ease, background-color .15s ease;
+    }
+
+    #gameServersOffcanvas .gs-code-frame:hover,
+    #gameServersOffcanvas .gs-code-frame:focus-visible {
+        background: rgba(0, 0, 0, 0.85);
+        border-color: rgba(255, 255, 255, 0.55);
+        outline: none;
+    }
+
+    #gameServersOffcanvas .gs-code-text {
+        color: #e9ecef;
+        font-size: 0.84rem;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #gameServersOffcanvas .gs-copy-btn {
+        align-items: center;
+        border-radius: 5px;
+        display: inline-flex;
+        flex-shrink: 0;
+        font-size: 0.8rem;
+        gap: 0.4rem;
+        padding: 0.45rem 0.85rem;
+        white-space: nowrap;
+    }
+
+    #gameServersOffcanvas .gs-connect-row.is-copied .gs-code-frame {
+        border-color: rgba(72, 199, 142, 0.8);
+    }
+
+    #gameServersOffcanvas .gs-connect-row.is-copied .gs-copy-btn {
+        background-color: rgba(25, 135, 84, 0.28);
+        border-color: rgba(72, 199, 142, 0.8);
+        color: #7ee2b8;
+    }
+
+    #gameServersOffcanvas .gs-banner-wrap {
+        margin-bottom: 0.6rem;
+    }
+
+    #gameServersOffcanvas .gs-banner-wrap:last-child {
+        margin-bottom: 0;
+    }
+
+    #gameServersOffcanvas .gs-banner {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 4px;
+        display: block;
+        height: auto;
+        max-width: 100%;
+        width: 560px;
+    }
+
+    #gameServersOffcanvas .gs-card-actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
 <div class="offcanvas offcanvas-end gs-offcanvas" tabindex="-1" id="gameServersOffcanvas" aria-labelledby="gameServersOffcanvasLabel">
     <div class="offcanvas-header gs-offcanvas-header">
         <h5 class="offcanvas-title" id="gameServersOffcanvasLabel">
             <i class="fas fa-gamepad me-2"></i>{{ .Site.Params.gameServersTitle | default "Game servers" }}
         </h5>
-        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Zavřít"></button>
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
     <div class="offcanvas-body gs-offcanvas-body">
@@ -33,11 +188,13 @@
                             {{ with $server.commandPrefix }}
                                 {{ $cmd = printf "%s %s" . $server.address }}
                             {{ end }}
-                            <div class="gs-code-block" role="button" tabindex="0" data-copy-text="{{ $cmd }}" title="Kliknutím zkopíruješ příkaz do konzole">
-                                <code class="gs-code-text">{{ $cmd }}</code>
-                                <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Kopírovat příkaz">
+                            <div class="gs-connect-row" data-copy-text="{{ $cmd }}">
+                                <div class="gs-code-frame" role="button" tabindex="0" title="Click to copy console command">
+                                    <code class="gs-code-text">{{ $cmd }}</code>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Copy command">
                                     <i class="fas fa-copy"></i>
-                                    <span class="gs-copy-label">Kopírovat</span>
+                                    <span class="gs-copy-label">Copy</span>
                                 </button>
                             </div>
                         {{ end }}
@@ -57,7 +214,7 @@
                         {{ if and $server.url (or (not $server.banner) $server.urlLabel) }}
                             <div class="gs-card-actions">
                                 <a href="{{ $server.url }}" class="btn btn-sm btn-outline-light" target="_blank" rel="noopener noreferrer">
-                                    {{ $server.urlLabel | default "Detail" }} <i class="fas fa-external-link-alt ms-1"></i>
+                                    {{ $server.urlLabel | default "Details" }} <i class="fas fa-external-link-alt ms-1"></i>
                                 </a>
                             </div>
                         {{ end }}
@@ -65,7 +222,7 @@
                 {{ end }}
             </div>
         {{ else }}
-            <p class="gs-empty">Zatím zde nejsou žádné přidané servery.</p>
+            <p class="gs-empty">No game servers configured yet.</p>
         {{ end }}
     </div>
 </div>
@@ -95,36 +252,41 @@
             });
         }
 
-        document.querySelectorAll('.gs-code-block').forEach(function (block) {
+        document.querySelectorAll('#gameServersOffcanvas .gs-connect-row').forEach(function (row) {
             let resetTimer = null;
+            const codeFrame = row.querySelector('.gs-code-frame');
+            const copyBtn = row.querySelector('.gs-copy-btn');
 
             function handleCopy() {
-                const text = block.getAttribute('data-copy-text');
+                const text = row.getAttribute('data-copy-text');
                 if (!text) return;
 
                 copyText(text).then(function () {
-                    const icon = block.querySelector('.gs-copy-btn i');
-                    const label = block.querySelector('.gs-copy-label');
-                    block.classList.add('is-copied');
+                    const icon = copyBtn ? copyBtn.querySelector('i') : null;
+                    const label = copyBtn ? copyBtn.querySelector('.gs-copy-label') : null;
+                    row.classList.add('is-copied');
                     if (icon) icon.className = 'fas fa-check';
-                    if (label) label.textContent = 'Zkopírováno';
+                    if (label) label.textContent = 'Copied!';
 
                     if (resetTimer) clearTimeout(resetTimer);
                     resetTimer = setTimeout(function () {
-                        block.classList.remove('is-copied');
+                        row.classList.remove('is-copied');
                         if (icon) icon.className = 'fas fa-copy';
-                        if (label) label.textContent = 'Kopírovat';
+                        if (label) label.textContent = 'Copy';
                     }, 1500);
                 });
             }
 
-            block.addEventListener('click', handleCopy);
-            block.addEventListener('keydown', function (e) {
-                if (e.target === block && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    handleCopy();
-                }
-            });
+            if (copyBtn) copyBtn.addEventListener('click', handleCopy);
+            if (codeFrame) {
+                codeFrame.addEventListener('click', handleCopy);
+                codeFrame.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleCopy();
+                    }
+                });
+            }
         });
     })();
 </script>

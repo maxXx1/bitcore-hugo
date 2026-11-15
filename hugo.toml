@@ -20,7 +20,7 @@ theme = "glim-midnight"
     footer = "<a href='https://pokorak.cz/' target='_blank'>Aleš</a>@Bitcore.cz:~$ sudo install-bitcore-server --enable-services <strike>--fast</strike> --soon™"
 
     gameServersTitle = "Game servers"
-    gameServersSubtitle = "Základní přehled herních serverů běžících na Bitcore."
+    gameServersSubtitle = "Overview of game servers running on Bitcore."
 
     [[params.gameServers]]
         name = "Call of Duty 2"
