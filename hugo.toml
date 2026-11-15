@@ -26,14 +26,14 @@ theme = "glim-midnight"
 
     [params.ts3]
         name = "TeamSpeak 3"
-        badge = "Hlavní"
+        badge = "verze 3.6.2"
         address = "ts3.bitcore.cz"
         connectUrl = "ts3server://ts3.bitcore.cz"
         connectLabel = "Připojit"
 
     [[params.voiceLinks]]
-        name = "TeamSpeak 6 Beta"
-        badge = "Testovací server"
+        name = "TeamSpeak 6"
+        badge = "Beta"
         icon = "fab fa-teamspeak"
         address = "ts6.bitcore.cz:9988"
         connectUrl = "teamspeak://ts6.bitcore.cz?port=9988"
@@ -78,6 +78,15 @@ theme = "glim-midnight"
         banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:7777/b_560_95_1.png"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7777/"
 
+        [params.gameServers.download]
+            title = "Unreal Tournament: Game of the Year Edition (GOTY)"
+            badge = "ZDARMA"
+            description = "Kompletní edice hry zdarma ke stažení přes komunitní instalátor OldUnreal."
+            windowsUrl = "https://github.com/OldUnreal/FullGameInstallers/releases/download/windows-game-installers/UT_GOTY.exe"
+            windowsLabel = "Stáhnout UT_GOTY.exe"
+            releasesUrl = "https://github.com/OldUnreal/FullGameInstallers/releases"
+            releasesLabel = "Instalace pro Linux & macOS"
+
     [[params.gameServers]]
         id = "utAssaultOffcanvas"
         name = "UTAssault"
@@ -85,6 +94,15 @@ theme = "glim-midnight"
         commandPrefix = "/open"
         banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:7140/b_560_95_1.png"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7140/"
+
+        [params.gameServers.download]
+            title = "Unreal Tournament: Game of the Year Edition (GOTY)"
+            badge = "ZDARMA"
+            description = "Kompletní edice hry zdarma ke stažení přes komunitní instalátor OldUnreal."
+            windowsUrl = "https://github.com/OldUnreal/FullGameInstallers/releases/download/windows-game-installers/UT_GOTY.exe"
+            windowsLabel = "Stáhnout UT_GOTY.exe"
+            releasesUrl = "https://github.com/OldUnreal/FullGameInstallers/releases"
+            releasesLabel = "Instalace pro Linux & macOS"
 
     [[params.gameServers]]
         id = "ut2004Offcanvas"
