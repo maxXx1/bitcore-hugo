@@ -25,23 +25,27 @@ theme = "glim-midnight"
     [[params.gameServers]]
         name = "Call of Duty 2"
         address = "gg.bitcore.cz:28960"
+        commandPrefix = "/connect"
         banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:28960/b_560_95_1.png"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:28960/"
 
     [[params.gameServers]]
-        name = "Game server :7777"
+        name = "Unreal Tournament"
         address = "gg.bitcore.cz:7777"
+        commandPrefix = "/open"
         banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:7777/b_560_95_1.png"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7777/"
 
     [[params.gameServers]]
-        name = "Game server :7140"
+        name = "UTAssault"
         address = "gg.bitcore.cz:7140"
+        commandPrefix = "/open"
         banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:7140/b_560_95_1.png"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:7140/"
 
     [[params.gameServers]]
-        name = "Game server :8888"
+        name = "Unreal Tournament 2004"
         address = "gg.bitcore.cz:8888"
+        commandPrefix = "/open"
         banner = "https://cache.gametracker.com/server_info/gg.bitcore.cz:8888/b_560_95_1.png"
         url = "https://www.gametracker.com/server_info/gg.bitcore.cz:8888/"

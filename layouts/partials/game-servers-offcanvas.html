@@ -29,10 +29,15 @@
                         {{ end }}
 
                         {{ with $server.address }}
-                            <div class="gs-address-row">
-                                <code class="gs-address">{{ . }}</code>
-                                <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" data-copy-address="{{ . }}" title="Kopírovat adresu">
+                            {{ $cmd := $server.address }}
+                            {{ with $server.commandPrefix }}
+                                {{ $cmd = printf "%s %s" . $server.address }}
+                            {{ end }}
+                            <div class="gs-code-block" role="button" tabindex="0" data-copy-text="{{ $cmd }}" title="Kliknutím zkopíruješ příkaz do konzole">
+                                <code class="gs-code-text">{{ $cmd }}</code>
+                                <button type="button" class="btn btn-sm btn-outline-light gs-copy-btn" aria-label="Kopírovat příkaz">
                                     <i class="fas fa-copy"></i>
+                                    <span class="gs-copy-label">Kopírovat</span>
                                 </button>
                             </div>
                         {{ end }}
@@ -66,19 +71,60 @@
 </div>
 
 <script>
-    document.querySelectorAll('.gs-copy-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            const addr = btn.getAttribute('data-copy-address');
-            if (!addr || !navigator.clipboard) return;
-            navigator.clipboard.writeText(addr).then(function () {
-                const icon = btn.querySelector('i');
-                if (icon) {
-                    icon.className = 'fas fa-check';
-                    setTimeout(function () {
-                        icon.className = 'fas fa-copy';
+    (function () {
+        function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+            return new Promise(function (resolve, reject) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    const ok = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    if (ok) resolve(); else reject();
+                } catch (err) {
+                    document.body.removeChild(textarea);
+                    reject(err);
+                }
+            });
+        }
+
+        document.querySelectorAll('.gs-code-block').forEach(function (block) {
+            let resetTimer = null;
+
+            function handleCopy() {
+                const text = block.getAttribute('data-copy-text');
+                if (!text) return;
+
+                copyText(text).then(function () {
+                    const icon = block.querySelector('.gs-copy-btn i');
+                    const label = block.querySelector('.gs-copy-label');
+                    block.classList.add('is-copied');
+                    if (icon) icon.className = 'fas fa-check';
+                    if (label) label.textContent = 'Zkopírováno';
+
+                    if (resetTimer) clearTimeout(resetTimer);
+                    resetTimer = setTimeout(function () {
+                        block.classList.remove('is-copied');
+                        if (icon) icon.className = 'fas fa-copy';
+                        if (label) label.textContent = 'Kopírovat';
                     }, 1500);
+                });
+            }
+
+            block.addEventListener('click', handleCopy);
+            block.addEventListener('keydown', function (e) {
+                if (e.target === block && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    handleCopy();
                 }
             });
         });
-    });
+    })();
 </script>
