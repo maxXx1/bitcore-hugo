@@ -539,65 +539,58 @@
 
 <script>
     (function () {
-        function copyText(text) {
-            if (navigator.clipboard && window.isSecureContext) {
-                return navigator.clipboard.writeText(text);
-            }
+        function fallbackCopyText(text, container) {
             return new Promise(function (resolve, reject) {
+                const parent = container || document.body;
+                const prevFocus = document.activeElement;
                 const textarea = document.createElement('textarea');
                 textarea.value = text;
                 textarea.setAttribute('readonly', '');
                 textarea.style.position = 'fixed';
+                textarea.style.top = '0';
+                textarea.style.left = '0';
+                textarea.style.width = '1px';
+                textarea.style.height = '1px';
+                textarea.style.padding = '0';
+                textarea.style.border = '0';
                 textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
+                textarea.style.fontSize = '16px';
+                parent.appendChild(textarea);
+
+                try {
+                    textarea.focus({ preventScroll: true });
+                } catch (_) {
+                    textarea.focus();
+                }
                 textarea.select();
+                textarea.setSelectionRange(0, textarea.value.length);
+
                 try {
                     const ok = document.execCommand('copy');
-                    document.body.removeChild(textarea);
-                    if (ok) resolve(); else reject();
+                    parent.removeChild(textarea);
+                    if (prevFocus && typeof prevFocus.focus === 'function') {
+                        try {
+                            prevFocus.focus({ preventScroll: true });
+                        } catch (_) {}
+                    }
+                    if (ok) resolve(); else reject(new Error('execCommand copy failed'));
                 } catch (err) {
-                    document.body.removeChild(textarea);
+                    if (textarea.parentNode === parent) {
+                        parent.removeChild(textarea);
+                    }
                     reject(err);
                 }
             });
         }
 
-        document.querySelectorAll('.bitcore-offcanvas .gs-connect-row').forEach(function (row) {
-            let resetTimer = null;
-            const codeFrame = row.querySelector('.gs-code-frame');
-            const copyBtn = row.querySelector('.gs-copy-btn');
-
-            function handleCopy() {
-                const text = row.getAttribute('data-copy-text');
-                if (!text) return;
-
-                copyText(text).then(function () {
-                    const icon = copyBtn ? copyBtn.querySelector('i') : null;
-                    const label = copyBtn ? copyBtn.querySelector('.gs-copy-label') : null;
-                    row.classList.add('is-copied');
-                    if (icon) icon.className = 'fas fa-check';
-                    if (label) label.textContent = 'Zkopírováno!';
-
-                    if (resetTimer) clearTimeout(resetTimer);
-                    resetTimer = setTimeout(function () {
-                        row.classList.remove('is-copied');
-                        if (icon) icon.className = 'fas fa-copy';
-                        if (label) label.textContent = 'Kopírovat';
-                    }, 1500);
+        function copyText(text, container) {
+            if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function' && window.isSecureContext) {
+                return navigator.clipboard.writeText(text).catch(function () {
+                    return fallbackCopyText(text, container);
                 });
             }
-
-            if (copyBtn) copyBtn.addEventListener('click', handleCopy);
-            if (codeFrame) {
-                codeFrame.addEventListener('click', handleCopy);
-                codeFrame.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        handleCopy();
-                    }
-                });
-            }
-        });
+            return fallbackCopyText(text, container);
+        }
 
         function refreshBanners(container) {
             const btnIcon = container.querySelector('.gs-refresh-btn i');
@@ -627,17 +620,71 @@
             });
         }
 
-        document.querySelectorAll('.bitcore-offcanvas').forEach(function (offcanvasEl) {
-            offcanvasEl.addEventListener('show.bs.offcanvas', function () {
-                refreshBanners(offcanvasEl);
+        function initOffcanvas() {
+            document.querySelectorAll('.bitcore-offcanvas .gs-connect-row').forEach(function (row) {
+                let resetTimer = null;
+                const codeFrame = row.querySelector('.gs-code-frame');
+                const copyBtn = row.querySelector('.gs-copy-btn');
+
+                function handleCopy() {
+                    const text = row.getAttribute('data-copy-text');
+                    if (!text) return;
+
+                    copyText(text, row).then(function () {
+                        const icon = copyBtn ? copyBtn.querySelector('i') : null;
+                        const label = copyBtn ? copyBtn.querySelector('.gs-copy-label') : null;
+                        row.classList.add('is-copied');
+                        if (icon) icon.className = 'fas fa-check';
+                        if (label) label.textContent = 'Zkopírováno!';
+
+                        if (resetTimer) clearTimeout(resetTimer);
+                        resetTimer = setTimeout(function () {
+                            row.classList.remove('is-copied');
+                            if (icon) icon.className = 'fas fa-copy';
+                            if (label) label.textContent = 'Kopírovat';
+                        }, 1500);
+                    }).catch(function () {
+                        const codeEl = row.querySelector('.gs-code-text');
+                        if (codeEl && window.getSelection) {
+                            const range = document.createRange();
+                            range.selectNodeContents(codeEl);
+                            const sel = window.getSelection();
+                            sel.removeAllRanges();
+                            sel.addRange(range);
+                        }
+                    });
+                }
+
+                if (copyBtn) copyBtn.addEventListener('click', handleCopy);
+                if (codeFrame) {
+                    codeFrame.addEventListener('click', handleCopy);
+                    codeFrame.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handleCopy();
+                        }
+                    });
+                }
             });
 
-            const refreshBtn = offcanvasEl.querySelector('.gs-refresh-btn');
-            if (refreshBtn) {
-                refreshBtn.addEventListener('click', function () {
+            document.querySelectorAll('.bitcore-offcanvas').forEach(function (offcanvasEl) {
+                offcanvasEl.addEventListener('show.bs.offcanvas', function () {
                     refreshBanners(offcanvasEl);
                 });
-            }
-        });
+
+                const refreshBtn = offcanvasEl.querySelector('.gs-refresh-btn');
+                if (refreshBtn) {
+                    refreshBtn.addEventListener('click', function () {
+                        refreshBanners(offcanvasEl);
+                    });
+                }
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initOffcanvas);
+        } else {
+            initOffcanvas();
+        }
     })();
 </script>
