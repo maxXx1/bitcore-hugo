@@ -1,4 +1,96 @@
 <style>
+    html,
+    body {
+        background-color: #000000;
+        max-width: 100%;
+        overflow-x: hidden;
+        overflow-x: clip;
+    }
+
+    .mainbg {
+        height: auto !important;
+        min-height: 100vh;
+        min-height: 100dvh;
+        width: 100%;
+    }
+
+    .mainbg video,
+    .mainbg .background-image {
+        height: 100%;
+        inset: 0;
+        left: 0;
+        object-fit: cover;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .content {
+        max-width: 100%;
+        padding-bottom: 5.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .content > div,
+    .contenthead,
+    .contenthead .center {
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .contenthead pre {
+        font-size: clamp(0.4rem, 2.35vw, 0.875rem);
+        margin: 0 auto 1rem;
+        max-width: 100%;
+        overflow-x: auto;
+        text-align: left;
+    }
+
+    .contentbtn {
+        max-width: 100%;
+    }
+
+    @media screen and (max-width: 700px) {
+        .content {
+            padding-top: 2.5rem;
+        }
+
+        .animatedText {
+            font-size: clamp(0.95rem, 4.2vw, 1.125rem);
+            height: auto;
+            min-height: 2.25rem;
+            padding-bottom: 0.75rem;
+        }
+
+        .contentbtn {
+            width: min(100%, 320px);
+        }
+
+        .contentbtn a,
+        .contentbtn button {
+            margin-bottom: 14px;
+        }
+
+        footer {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 65%, transparent);
+            font-size: 0.75rem;
+            height: auto;
+            line-height: 1.35;
+            min-height: 44px;
+            padding: 0.75rem 1rem 0.5rem;
+            text-align: center;
+            z-index: 10;
+        }
+
+        footer p {
+            max-width: 100%;
+            overflow-wrap: anywhere;
+        }
+    }
+
     .contentbtn a.btn-muted,
     .contentbtn button.btn-muted {
         border-color: rgba(255, 255, 255, 0.35);
@@ -21,8 +113,8 @@
         -webkit-backdrop-filter: blur(12px);
         border-left: 1px solid rgba(255, 255, 255, 0.22) !important;
         color: #f8f9fa !important;
-        max-width: 100vw !important;
-        width: min(640px, 100vw) !important;
+        max-width: 100% !important;
+        width: min(640px, 100%) !important;
     }
 
     .bitcore-offcanvas .gs-offcanvas-header {
@@ -440,6 +532,7 @@
         border: 1px solid rgba(255, 255, 255, 0.16);
         border-radius: 5px;
         max-height: 360px;
+        overflow-x: auto;
         overflow-y: auto;
         padding: 0.75rem 0.9rem;
     }
@@ -534,6 +627,32 @@
 
     .bitcore-offcanvas .ts-secondary-card .gs-card-header {
         margin-bottom: 0.6rem;
+    }
+
+    @media screen and (max-width: 576px) {
+        .bitcore-offcanvas .gs-offcanvas-header {
+            padding: 0.85rem 1rem;
+        }
+
+        .bitcore-offcanvas .gs-offcanvas-body {
+            padding: 1rem;
+        }
+
+        .bitcore-offcanvas .gs-card,
+        .bitcore-offcanvas .gs-download-card,
+        .bitcore-offcanvas .ts-secondary-card {
+            padding: 0.85rem;
+        }
+    }
+
+    @media screen and (max-width: 380px) {
+        .bitcore-offcanvas .gs-connect-row {
+            flex-direction: column;
+        }
+
+        .bitcore-offcanvas .gs-copy-btn {
+            justify-content: center;
+        }
     }
 </style>
 
